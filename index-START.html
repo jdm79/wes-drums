@@ -60,8 +60,16 @@
 <script>
   window.addEventListener('keydown', (e) => {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);   
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);   
     if(!audio) return; // stops the function from running if no sound associated with the key
+    audio.currentTime = 0;
     audio.play();     
+    key.classList.add('playing');    
+  })
+
+   window.addEventListener('keyup', (e) => {
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);   
+    key.classList.remove('playing');    
   })
 </script>
 
